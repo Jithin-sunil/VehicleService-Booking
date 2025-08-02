@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2025 at 11:26 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jul 30, 2025 at 12:28 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `tbl_admin` (
   `admin_name` varchar(30) NOT NULL,
   `admin_email` varchar(30) NOT NULL,
   `admin_password` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_admin`
@@ -54,14 +54,19 @@ CREATE TABLE `tbl_booking` (
   `booking_amount` int(60) NOT NULL,
   `booking_status` int(11) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_booking`
 --
 
 INSERT INTO `tbl_booking` (`booking_id`, `booking_date`, `booking_todate`, `booking_amount`, `booking_status`, `user_id`) VALUES
-(1, '2025-07-21', '2025-07-31', 100, 1, 3);
+(1, '2025-07-30', '2025-07-31', 100, 1, 3),
+(4, '2025-07-30', '2025-07-31', 100, 1, 3),
+(5, '2025-07-30', '2025-07-31', 100, 1, 3),
+(6, '2025-07-30', '2025-07-30', 100, 1, 3),
+(7, '2025-07-30', '2025-07-31', 100, 2, 3),
+(8, '2025-07-30', '', 0, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -77,7 +82,15 @@ CREATE TABLE `tbl_complaint` (
   `complaint_date` varchar(61) NOT NULL,
   `complaint_reply` varchar(60) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_complaint`
+--
+
+INSERT INTO `tbl_complaint` (`complaint_id`, `complaint_title`, `complaint_content`, `complaint_status`, `complaint_date`, `complaint_reply`, `user_id`) VALUES
+(1, 'rdefeg', 'fgertgvrth', 1, '2025-07-30', 'rgttrh', 3),
+(4, 'erfeg', 'rfertgtr5h', 1, '2025-07-30', 'ergtfrh', 3);
 
 -- --------------------------------------------------------
 
@@ -88,7 +101,7 @@ CREATE TABLE `tbl_complaint` (
 CREATE TABLE `tbl_district` (
   `district_id` int(11) NOT NULL,
   `district_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_district`
@@ -110,7 +123,14 @@ CREATE TABLE `tbl_feedback` (
   `feedback_content` varchar(60) NOT NULL,
   `feedback_date` varchar(60) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_feedback`
+--
+
+INSERT INTO `tbl_feedback` (`feedback_id`, `feedback_content`, `feedback_date`, `user_id`) VALUES
+(2, 'gvbgtnjy', '2025-07-30', 3);
 
 -- --------------------------------------------------------
 
@@ -124,14 +144,15 @@ CREATE TABLE `tbl_package` (
   `package_amount` varchar(60) NOT NULL,
   `package_photo` varchar(200) NOT NULL,
   `servicecenter_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_package`
 --
 
 INSERT INTO `tbl_package` (`package_id`, `package_description`, `package_amount`, `package_photo`, `servicecenter_id`) VALUES
-(2, 'Heloo', '100', 'Screenshot (2).png', 1);
+(2, 'Heloo', '100', 'Screenshot (2).png', 1),
+(3, 'ed3fer', '12000', '38680618_8664875.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -146,15 +167,14 @@ CREATE TABLE `tbl_packagebooking` (
   `packagebooking_status` int(11) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL,
   `package_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_packagebooking`
 --
 
 INSERT INTO `tbl_packagebooking` (`packagebooking_id`, `packagebooking_date`, `packagebooking_todate`, `packagebooking_status`, `user_id`, `package_id`) VALUES
-(1, '2025-07-19', '2025-07-20', 0, 3, 2),
-(2, '2025-07-19', '2025-07-27', 0, 3, 2);
+(6, '2025-07-30', '2025-07-31', 3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -166,7 +186,7 @@ CREATE TABLE `tbl_place` (
   `place_id` int(11) NOT NULL,
   `place_name` varchar(30) NOT NULL,
   `district_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_place`
@@ -188,7 +208,7 @@ CREATE TABLE `tbl_review` (
   `review_datetime` varchar(60) NOT NULL,
   `user_id` int(11) NOT NULL,
   `servicecenter_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -201,14 +221,15 @@ CREATE TABLE `tbl_serviceamount` (
   `serviceamount_price` int(50) NOT NULL,
   `servicecenter_id` int(11) NOT NULL,
   `servicetype_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_serviceamount`
 --
 
 INSERT INTO `tbl_serviceamount` (`serviceamount_id`, `serviceamount_price`, `servicecenter_id`, `servicetype_id`) VALUES
-(2, 100, 1, 2);
+(2, 100, 1, 2),
+(3, 1000, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -227,7 +248,7 @@ CREATE TABLE `tbl_servicecenter` (
   `servicecenter_logo` varchar(60) NOT NULL,
   `servicecenter_proof` varchar(60) NOT NULL,
   `servicecenter_password` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_servicecenter`
@@ -245,7 +266,7 @@ INSERT INTO `tbl_servicecenter` (`servicecenter_id`, `servicecenter_name`, `serv
 CREATE TABLE `tbl_servicetype` (
   `servicetype_id` int(11) NOT NULL,
   `servicetype_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_servicetype`
@@ -265,14 +286,21 @@ CREATE TABLE `tbl_singleservice` (
   `singleservice_status` int(11) NOT NULL DEFAULT 0,
   `booking_id` int(11) NOT NULL,
   `serviceamount_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_singleservice`
 --
 
 INSERT INTO `tbl_singleservice` (`singleservice_id`, `singleservice_status`, `booking_id`, `serviceamount_id`) VALUES
-(1, 1, 1, 2);
+(1, 1, 1, 2),
+(2, 0, 2, 2),
+(3, 0, 3, 2),
+(4, 1, 4, 2),
+(5, 1, 5, 2),
+(6, 1, 6, 2),
+(7, 1, 7, 2),
+(8, 0, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -289,7 +317,7 @@ CREATE TABLE `tbl_user` (
   `user_photo` varchar(200) NOT NULL,
   `user_password` varchar(30) NOT NULL,
   `place_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_user`
@@ -400,13 +428,13 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_booking`
 --
 ALTER TABLE `tbl_booking`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
-  MODIFY `complaint_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `complaint_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_district`
@@ -418,19 +446,19 @@ ALTER TABLE `tbl_district`
 -- AUTO_INCREMENT for table `tbl_feedback`
 --
 ALTER TABLE `tbl_feedback`
-  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_package`
 --
 ALTER TABLE `tbl_package`
-  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_packagebooking`
 --
 ALTER TABLE `tbl_packagebooking`
-  MODIFY `packagebooking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `packagebooking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_place`
@@ -448,7 +476,7 @@ ALTER TABLE `tbl_review`
 -- AUTO_INCREMENT for table `tbl_serviceamount`
 --
 ALTER TABLE `tbl_serviceamount`
-  MODIFY `serviceamount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `serviceamount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_servicecenter`
@@ -466,7 +494,7 @@ ALTER TABLE `tbl_servicetype`
 -- AUTO_INCREMENT for table `tbl_singleservice`
 --
 ALTER TABLE `tbl_singleservice`
-  MODIFY `singleservice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `singleservice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`

@@ -6,24 +6,46 @@
 </head>
 
 <body>
+<?php
+include("../Assets/Connection/Connection.php");
+session_start();
+$sid = $_SESSION["sid"];
+$selqry = "SELECT b.booking_id, b.booking_date, b.booking_todate, b.booking_amount, ss.singleservice_id, sa.serviceamount_price , u.user_name,u.user_email,u.user_contact FROM tbl_booking b INNER JOIN tbl_singleservice ss ON b.booking_id = ss.booking_id INNER JOIN tbl_serviceamount sa ON ss.serviceamount_id = sa.serviceamount_id inner join tbl_user u on u.user_id=b.user_id WHERE servicecenter_id  = '$sid' ORDER BY b.booking_date DESC";
+$result = $Con->query($selqry);
+?>
 <form id="form1" name="form1" method="post" action="">
-  <table width="200" border="1">
+  <table width="600" border="1" align="center">
     <tr>
-      <td>S.No</td>
-      <td>Date</td>
-      <td>ToDate</td>
-      <td>User</td>
-      <td>Amount</td>
-      <td>Action</td>
+      <th>S.No</th>
+      <th>User Details</th>
+      <th>Date</th>
+      <th>To Date</th>
+      <th>Service Amount</th>
+      <th>Booking Amount</th>
+      <th>Action</th>
     </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
+    <?php
+    if ($result->num_rows > 0) {
+        $i = 1;
+        while ($row = $result->fetch_assoc()) {
+          ?>
+           <tr>
+           <td><?php echo  $i++ ?></td>
+           <td> <?php echo $row["user_name"] ?><br>
+          <?php echo $row["user_email"] ?>
+            <?php echo $row["user_contact"] ?></td>
+           <td> <?php echo $row["booking_date"] ?></td>
+           <td><?php echo  $row["booking_todate"] ?></td>
+           <td>₹<?php echo  $row["serviceamount_price"] ?></td>
+           <td>₹ <?php echo $row["booking_amount"] ?></td>
+           <td></td>
+           </tr>
+            <?php
+        }
+    } else {
+        echo "<tr><td colspan='6'>No service bookings found.</td></tr>";
+    }
+    ?>
   </table>
 </form>
 </body>

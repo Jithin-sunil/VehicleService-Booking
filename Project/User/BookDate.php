@@ -4,21 +4,21 @@ session_start();
 
 if (isset($_POST['btn_submit'])) {
     $date = $_POST['txt_date'];
-
+   $bookingId = $_SESSION['bid'];
     if (isset($_SESSION['bid'])) {
-        $bookingId = $_SESSION['bid'];
+       
         $updateSql = "UPDATE tbl_booking SET booking_todate = '$date' WHERE booking_id = '$bookingId'";
         if ($Con->query($updateSql)) {
             echo "<script>alert('Booking date updated!');
-            window.location='Homepage.php';</script>";
+            window.location='Payment.php';</script>";
         } else {
             echo "<script>alert('Update failed!');</script>";
         }
     } else if (isset($_GET['pid'])) {
         $packageId = $_GET['pid'];
-        $insertSql = "INSERT INTO tbl_packagebooking (package_id, packagebooking_todate, user_id, packagebooking_date) 
+         $insertSql = "INSERT INTO tbl_packagebooking (package_id, packagebooking_todate, user_id, packagebooking_date) 
                       VALUES ('$packageId', '$date', '".$_SESSION['uid']."', CURDATE())";
-        if ($Con->query($insertSql)) {
+         if ($Con->query($insertSql)) {
             echo "<script>alert('Booking successful!');
             window.location='Homepage.php';</script>";
         } else {

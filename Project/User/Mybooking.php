@@ -43,7 +43,29 @@ session_start();
           <td><img src="../Assets/Files/ServiceCenter/Package/<?php echo $row['package_photo']; ?>" width="100" height="100" /></td>
           <td><?php echo $row['packagebooking_date']; ?></td>
           <td><?php echo $row['packagebooking_todate']; ?></td>
-          <td></td>
+          <td>
+          <?php 
+          if($row['packagebooking_status'] == 0)
+           { 
+            ?>
+           Pending
+          <?php 
+          }
+           else if($row['packagebooking_status'] == 1) { 
+            
+            ?>
+            Accepted
+            <a href="Pay.php?pbid=<?php echo $row['packagebooking_id']; ?>">Pay</a>
+            
+          <?php } else if($row['packagebooking_status'] == 2) { ?>
+            Rejected
+          <?php }
+            else if($row['packagebooking_status'] == 3)
+           { 
+            ?>
+           Payment Completed
+          <?php 
+          } ?>
         </tr>
         <?php
     }

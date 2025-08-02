@@ -9,6 +9,7 @@ include('../Assets/Connection/Connection.php');
 </head>
 
 <body>
+  <a href="ViewBookedServices.php">View Bookng</a>
 <form id="form1" name="form1" method="post" action="">
   <table border="1" align = "center">
     <tr>
